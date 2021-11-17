@@ -1,0 +1,275 @@
+{% extends "layouts/base.html" %} {% block title %} Sign UP {% endblock %} {% block stylesheets %} {% endblock stylesheets %} {% block content %}
+
+<main>
+    <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center form-bg-image">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 ">
+                        <div class="text-center text-md-center mb-4 mt-md-0">
+                            <h1 class="mb-0 h3">
+                                ข้อมูลนักเรียน
+                            </h1>
+                        </div>
+                        <form method="post" action="" class="mt-4">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <div class="row container">
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-2">
+                                            <label>ID</label>
+                                            <div class="input-group ">
+                                                <span class="input-group-text " id="basic-addon1">
+                                                        <span class="fas fa-id-badge"></span>
+                                                </span>
+                                                {{ form.s_id }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_id.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>ประเภทผู้สมัคร</label>
+                                            <div class="input-group ">
+                                                <span class="input-group-text " id="basic-addon1">
+                                                        <span class="fas fa-id-badge"></span>
+                                                </span>
+                                                {{ form.s_Applicant_type }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Applicant_type.errors }}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-2">
+                                            <label>รหัสผู้สมัคร</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_code }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_code.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>รหัสคณะ</label>
+                                            <div class="input-group ">
+                                                <span class="input-group-text " id="basic-addon1">
+                                                        <span class="fas fa-id-badge"></span>
+                                                </span>
+                                                {{ form.s_Faculty_Code }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Faculty_Code.errors }}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-2">
+                                            <label>คำนำหน้า</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_prefix }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_prefix.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>สาขาวิชา</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_Field_of_study }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Field_of_study.errors }}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-2">
+                                            <label>สถานะผู้สมัคร</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_status }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_status.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>ปีการศึกษา</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_Year }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Year.errors }}</span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="text-center text-md-center mb-4 mt-md-0">
+                                    <h1 class="mb-0 h3">
+                                        ข้อมูลเกรดนักเรียน
+                                    </h1>
+                                </div>
+
+                                <div class="row container">
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-2">
+                                            <label>เกรดภาษาไทย</label>
+                                            <div class="input-group ">
+                                                <span class="input-group-text " id="basic-addon1">
+                                                        <span class="fas fa-id-badge"></span>
+                                                </span>
+                                                {{ form.s_Thai_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Thai_Grade.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>เกรดสุขศึกษา</label>
+                                            <div class="input-group ">
+                                                <span class="input-group-text " id="basic-addon1">
+                                                        <span class="fas fa-id-badge"></span>
+                                                </span>
+                                                {{ form.s_Health_education_Grades }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Health_education_Grades.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>เกรดเฉลี่ยรวม</label>
+                                            <div class="input-group ">
+                                                <span class="input-group-text " id="basic-addon1">
+                                                        <span class="fas fa-id-badge"></span>
+                                                </span>
+                                                {{ form.s_GPAX }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_GPAX.errors }}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-2">
+                                            <label>เกรดคณิตศาสตร์</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_Math_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Math_Grade.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>เกรดศิลปะ</label>
+                                            <div class="input-group ">
+                                                <span class="input-group-text " id="basic-addon1">
+                                                        <span class="fas fa-id-badge"></span>
+                                                </span>
+                                                {{ form.s_Art_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Art_Grade.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>ชื่อโรงเรียน</label>
+                                            <div class="input-group ">
+                                                <span class="input-group-text " id="basic-addon1">
+                                                        <span class="fas fa-id-badge"></span>
+                                                </span>
+                                                {{ form.s_School_Name }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_School_Name.errors }}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-2">
+                                            <label>เกรดวิทยาศาสตร์</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_Science_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Science_Grade.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>เกรดการงานอาชีพ</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_Career_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Career_Grade.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>ชื่อจังหวัด</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_Province_Name }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Province_Name.errors }}</span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-md-3">
+                                        <div class="form-group mb-2">
+                                            <label>เกรดสังคมศึกษา</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_Social_studies_Grades }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Social_studies_Grades.errors }}</span>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label>เกรดภาษาต่างประเทศ</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1">
+                                                        <span class="fas fa-user-circle"></span>
+                                                </span>
+                                                {{ form.s_Foreign_language_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Foreign_language_Grade.errors }}</span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-gray-800">เพิ่มข้อมูล</button>
+                            </div>
+                        </form>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content %} {% block javascripts %} {% endblock javascripts %}

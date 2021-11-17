@@ -1,0 +1,120 @@
+{% extends "layouts/base.html" %} {% block title %} Dashboard {% endblock %} {% block stylesheets %} {% endblock stylesheets %} {% load crispy_forms_tags %} {% block content %}
+<!-- 
+<div class="container-fluid">
+    <h1 class="mt-4">นักเรียนที่สละสิทธิ์</h1>
+    <div class="card mb-4">
+        <div class="card-body">
+            รายงานจำนวนนักเรียนที่สละสิทธิ์ โดยแสดง 1).กราฟนักเรียนที่สละสิทธิ์ 2).กราฟนักเรียนที่สละสิทธิ์แต่ละหลักสูตร 3).ตารางนักเรียนที่สละสิทธิ์
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area mr-1"></i> กราฟนักเรียนที่สละสิทธิ์
+                </div>
+                <div>
+                    <iframe width="100%" height="400px" src="https://datastudio.google.com/embed/reporting/5fb43d04-bff6-40c1-bb4a-32a45f64429b/page/K17JC" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-bar mr-1"></i> กราฟนักเรียนที่สละสิทธิ์แต่ละหลักสูตร
+                </div>
+                <div>
+                    <iframe width="100%" height="400px" src="https://datastudio.google.com/embed/reporting/5fb43d04-bff6-40c1-bb4a-32a45f64429b/page/bsBKC" frameborder="0" style="border:0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-table mr-1"></i> ตารางนักเรียนที่สละสิทธิ์
+        </div>
+        <div>
+            <iframe width="100%" height="850" src="https://datastudio.google.com/embed/reporting/5fb43d04-bff6-40c1-bb4a-32a45f64429b/page/jfHJC" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+    </div>
+</div> -->
+<div class="row">
+    <div class="col-12 mb-4">
+        <div class="card  border-0 shadow">
+            <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+                <div class="d-block mb-3 mb-sm-0">
+                    <div class="fs-4 fw-normal mb-2">นักเรียนที่สละสิทธิ์</div>
+                    <br>
+                    <div class="fw-normal mb-2">เรียนทั้งหมด : <span class="text-info fw-bold">{{sums}} คน</span></div>
+                    <div class="fw-normal mb-2">เรียนที่ยืนยันสิทธิ์ : <span class="text-success fw-bold">{{PASS}} คน</span></div>
+                    <div class="fw-normal mb-2">เรียนที่สละสิทธิ์ : <span class="text-danger fw-bold">{{NOTPASS}} คน</span></div>
+                    <!-- <div class="small mt-2">
+                        <span class="fw-normal me-2">ยืนยันสิทธิ์</span>
+                        <span class="fas fa-angle-up text-success"></span>
+                        <span class="text-success fw-bold">{{passper}} %</span>
+                    </div>
+                    <div class="small mt-2">
+                        <span class="fw-normal me-2">สละสิทธิ์</span>
+                        <span class="fas fa-angle-up text-danger"></span>
+                        <span class="text-danger fw-bold">{{nopassper}} %</span>
+                    </div> -->
+                </div>
+                <div class="d-flex ms-auto">
+                    <div class="small mt-2">
+                        <span class="fw-normal me-2">ยืนยันสิทธิ์</span>
+                        <span class="fas fa-angle-up text-success"></span>
+                        <span class="text-success fw-bold">{{passper}} %</span>
+                        <br>
+                        <span class="fw-normal me-2">สละสิทธิ์</span>
+                        <span class="fas fa-angle-up text-danger"></span>
+                        <span class="text-danger fw-bold">{{nopassper}} %</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-6">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                        <h2 class="fs-5 fw-bold mb-0">กราฟนักเรียนที่สละสิทธิ์</h2>
+                    </div>
+                    <div class="card-body wrapper">
+                        <iframe src="https://datastudio.google.com/embed/reporting/5fb43d04-bff6-40c1-bb4a-32a45f64429b/page/K17JC" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-6">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                        <h2 class="fs-5 fw-bold mb-0">กราฟนักเรียนที่สละสิทธิ์แต่ละหลักสูตร</h2>
+                    </div>
+                    <div class="card-body wrapper">
+                        <iframe src="https://datastudio.google.com/embed/reporting/5fb43d04-bff6-40c1-bb4a-32a45f64429b/page/bsBKC" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 ">
+        <div class="card border-0 shadow">
+            <div class="card-header border-bottom d-flex align-items-center justify-content-between">
+                <h2 class="fs-5 fw-bold mb-0">กราฟนักเรียนที่สละสิทธิ์แต่ละหลักสูตร</h2>
+            </div>
+            <div class="card-body wrapper">
+                <iframe src="https://datastudio.google.com/embed/reporting/5fb43d04-bff6-40c1-bb4a-32a45f64429b/page/jfHJC" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

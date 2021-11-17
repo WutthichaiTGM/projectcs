@@ -1,0 +1,134 @@
+{% extends "layouts/base.html" %} {% block title %} Dashboard {% endblock %} {% block stylesheets %} {% endblock stylesheets %} {% load crispy_forms_tags %} {% block content %}
+
+<main>
+    <section class="mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div class="container">
+            <div class="row justify-content-center form-bg-image">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 ">
+                        <div class="text-center text-md-center mt-md-0">
+                            <h1 class="mb-0 h3">
+                                {% if sta != 'visible' %}
+                                <h1 style="text-align: center;">{{predicts}}</h1>
+                                {%endif%} {% if sta == 'visible' %}
+                                <h1 style="text-align: center;">{{predicts}}</h1>
+                                {%endif%}
+                            </h1>
+                        </div>
+                        <form method="post" action="" class="mt-4">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <hr>
+                                <div class="text-center text-md-center mb-4 mt-md-0">
+                                    <h1 class="mb-0 h3">
+                                        กรอกข้อมูลเพื่อวิเคราะห์
+                                    </h1>
+                                </div>
+
+                                <div class="row container">
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-2">
+                                            <label>คำนำหน้า</label>
+                                            <div class="input-group">
+                                                {{ form.s_prefix }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_prefix.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>เกรดภาษาไทย</label>
+                                            <div class="input-group ">
+                                                {{ form.s_Thai_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Thai_Grade.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>เกรดคณิตศาสตร์</label>
+                                            <div class="input-group">
+                                                {{ form.s_Math_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Math_Grade.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>เกรดวิทยาศาสตร์</label>
+                                            <div class="input-group">
+                                                {{ form.s_Science_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Science_Grade.errors }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-2">
+                                            <label>เกรดสังคมศึกษา</label>
+                                            <div class="input-group">
+                                                {{ form.s_Social_studies_Grades }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Social_studies_Grades.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>เกรดสุขศึกษา</label>
+                                            <div class="input-group ">
+                                                {{ form.s_Health_education_Grades }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Health_education_Grades.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>เกรดศิลปะ</label>
+                                            <div class="input-group ">
+                                                {{ form.s_Art_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Art_Grade.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>เกรดการงานอาชีพ</label>
+                                            <div class="input-group">
+                                                {{ form.s_Career_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Career_Grade.errors }}</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group mb-2">
+                                            <label>เกรดภาษาต่างประเทศ</label>
+                                            <div class="input-group">
+                                                {{ form.s_Foreign_language_Grade }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Foreign_language_Grade.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>เกรดเฉลี่ยรวม</label>
+                                            <div class="input-group ">
+                                                {{ form.s_GPAX }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_GPAX.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>ชื่อจังหวัด</label>
+                                            <div class="input-group">
+                                                {{ form.s_Province_Name }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_Province_Name.errors }}</span>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label>ชื่อโรงเรียน</label>
+                                            <div class="input-group ">
+                                                {{ form.s_School_Name }}
+                                            </div>
+                                            <span class="text-error">{{ form.s_School_Name.errors }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success">วิเคราะห์ข้อมูล</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock content %} {% block javascripts %}{% endblock javascripts %}

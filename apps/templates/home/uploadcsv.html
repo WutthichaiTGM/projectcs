@@ -1,0 +1,40 @@
+{% extends "layouts/base.html" %} {% block title %} Transactions {% endblock %} {% block stylesheets %}{% endblock stylesheets %} {% block content %}
+
+<main>
+    <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex ">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="">
+                    <div class="card shadow-lg border-0 rounded-lg mt-5">
+                        <div class="card-header">
+                            <h3 class="text-center font-weight-light my-4">
+                                Upload CSV File
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label class="form-label" for="customFile">เฉพาะไฟล์ .CSV</label>
+                                    <input type="file" class="form-control" name="file" style="height: 100%" /> {% if messages %} {% for message in messages %} {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                    <div class="text-center alert alert-danger" role="alert">
+                                        {{ message }}
+                                    </div>
+                                    {% endif %} {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                                    <div class="text-center alert alert-success" role="alert">
+                                        {{ message }}
+                                    </div>
+                                    {% endif %} {% endfor %} {% endif %}
+                                </div>
+                                <br>
+                                <button class="btn btn-primary" type="submit">Upload</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock content %} {% block javascripts %} {% endblock javascripts %}

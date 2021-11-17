@@ -1,0 +1,73 @@
+{% extends "layouts/base.html" %} {% block title %} Tables {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+<div class="card border-0 shadow">
+    <div class="card-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h2 class="fs-5 fw-bold mb-0">ตารางข้อมูล</h2>
+            </div>
+
+        </div>
+    </div>
+    <div class="card border-0 shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="dataTable" class="ui celled table responsive nowrap unstackable" style="width:100%">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ลำดับ</th>
+                            <th>ID</th>
+                            <th>รหัสผู้สมัคร</th>
+                            <th>สถานะผู้สมัคร</th>
+                            <th>ประเภทผู้สมัคร</th>
+                            <th>สาขาวิชา</th>
+                            <th>ปีการศึกษา</th>
+                            {% if user.is_superuser %}
+                            <th>แก้ไข</th>
+                            <th>ลบ</th>
+                            {%endif%}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in queryset %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{data.s_id}}</td>
+                            <td>{{data.s_code}}</td>
+                            <td>{{data.s_status}}</td>
+                            <td>{{data.s_Applicant_type}}</td>
+                            <td>{{data.s_Field_of_study}}</td>
+                            <td>{{data.s_Year}}</td>
+                            {% if user.is_superuser %}
+                            <td>
+                                <a href="{% url 'form_update' data.s_id %}" class="btn btn-info" type="button">แก้ไข</a>
+                            </td>
+                            <td>
+                                <form action="{% url 'form_delete' data.s_id %}" method="post" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลนี้');">
+                                    {% csrf_token %}
+                                    <button class="btn btn-danger" type="submit">ลบ
+                                </form>
+                            </td>
+                            {%endif%} {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

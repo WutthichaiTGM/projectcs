@@ -1,0 +1,189 @@
+{% extends "layouts/base.html" %} {% block title %} Dashboard {% endblock %} {% block stylesheets %} {% endblock stylesheets %} {% load crispy_forms_tags %} {% block content %}
+
+<div class="container-fluid">
+    <div class="col-12 mb-4">
+        <div class="card border-0 shadow">
+            <div class="card-header d-sm-flex flex-row align-items-center flex-0">
+                <div class="d-block mb-3 mb-sm-0">
+                    <div class="fs-5 fw-normal mb-2">ข้อมูลภาพรวมของคณะวิทยาศาสตร์</div>
+                    <h2 class="fs-3 fw-extrabold">สถานะผู้สมัคร</h2>
+                    <div class="small mt-2">
+
+                    </div>
+                </div>
+                <div class="d-flex ms-auto">
+                    {% if count == 0 %}
+                    <span class="fw-normal font-medium me-2">ข้อมูลทั้งหมด : </span>
+                    <span class="fas fa-angle-up text-success"></span>
+                    <span class="text-dark font-medium fw-bold">{{countdata}}  คน</span> {% endif %} {% if count > 0 %}
+                    <span class="fw-normal font-medium me-2"> {{Status}} : </span>
+                    <span class="fas fa-angle-up text-success"></span>
+                    <span class="text-dark font-medium fw-bold">{{count}} คน</span> {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        {% for i in status %} {% if i.s_status == 'ไม่มีสิทธิ์สัมภาษณ์' %}
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-danger text-white mb-4">
+                <div class="card-body">{{i.s_status}}</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <form method='POST' action='details'>
+                        {% csrf_token %}
+                        <input class="btn btn-danger text-white" type="submit" value="ดูข้อมูล" name="{{i.s_status}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {%endif%} {% if i.s_status == 'ไม่มาสัมภาษณ์' %}
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-warning text-white mb-4">
+                <div class="card-body">{{i.s_status}}</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <form method='POST' action='details'>
+                        {% csrf_token %}
+                        <input class="btn btn-warning text-white" type="submit" value="ดูข้อมูล" name="{{i.s_status}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {%endif%} {% if i.s_status == 'ผ่านแต่ไม่ชำระเงิน' %}
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-info text-white mb-4">
+                <div class="card-body">{{i.s_status}}</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <form method='POST' action='details'>
+                        {% csrf_token %}
+                        <input class="btn btn-info text-white" type="submit" value="ดูข้อมูล" name="{{i.s_status}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {%endif%} {% if i.s_status == 'ชำระเงินเรียบร้อย' %}
+        <div class="col-xl-3 col-md-6">
+            <div class="card bg-success text-white mb-4">
+                <div class="card-body">{{i.s_status}}</div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <form method='POST' action='details'>
+                        {% csrf_token %}
+                        <input class="btn btn-success text-white" type="submit" value="ดูข้อมูล" name="{{i.s_status}}">
+                    </form>
+                </div>
+            </div>
+        </div>
+        {%endif%} {%endfor%}
+    </div>
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area mr-1"></i> กราฟรวมสถานะผู้สมัคร
+                </div>
+                <div class="card-body">
+                    {% if graph1 %}
+                    <img class="font-face" width="100%" height="100%" src="data:image/png;base64, {{graph1|safe}}"> {% endif%}
+                </div>
+            </div>
+        </div>
+        {% if sta != 'visible' %}
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area mr-1"></i> กราฟต่อสถานะผู้สมัคร
+                </div>
+                <div class="card-body">
+                    {% if graph3 %}
+                    <img class="font-face" width="100%" height="100%" src="data:image/png;base64, {{graph3|safe}}"> {% endif%}
+                </div>
+            </div>
+        </div>
+        {%endif%} {% if sta == 'visible' %}
+        <div class="col-xl-6">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-area mr-1"></i> กราฟต่อสถานะผู้สมัคร
+                </div>
+                <div class="card-body">
+                    {% if graph2 %}
+                    <img class="font-face" width="100%" height="100%" src="data:image/png;base64, {{graph2|safe}}"> {% endif%}
+                </div>
+            </div>
+        </div>
+        {%endif%}
+    </div>
+    {% if sta == 'visible' %}
+    <div class="card border-0 shadow">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h2 class="fs-5 fw-bold mb-0">ตารางข้อมูล</h2>
+                </div>
+
+            </div>
+        </div>
+        <div class="card border-0 shadow mb-4">
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="dataTable" class="ui celled table responsive nowrap unstackable" style="width:100%">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>ID</th>
+                                <th>รหัสผู้สมัคร</th>
+                                <th>สถานะผู้สมัคร</th>
+                                <th>ประเภทผู้สมัคร</th>
+                                <th>สาขาวิชา</th>
+                                <th>ปีการศึกษา</th>
+                                {% if user.is_superuser %}
+                                <th>แก้ไข</th>
+                                <th>ลบ</th>
+                                {%endif%}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for data in queryset %}
+                            <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td>{{data.s_id}}</td>
+                                <td>{{data.s_code}}</td>
+                                <td>{{data.s_status}}</td>
+                                <td>{{data.s_Applicant_type}}</td>
+                                <td>{{data.s_Field_of_study}}</td>
+                                <td>{{data.s_Year}}</td>
+                                {% if user.is_superuser %}
+                                <td>
+                                    <a href="{% url 'form_update' data.s_id %}" class="btn btn-info" type="button">แก้ไข</a>
+                                </td>
+                                <td>
+                                    <form action="{% url 'form_delete' data.s_id %}" method="post" onsubmit="return confirm('คุณแน่ใจหรือไม่ว่าต้องการลบข้อมูลนี้');">
+                                        {% csrf_token %}
+                                        <button class="btn btn-danger" type="submit">ลบ
+                                    </form>
+                                </td>
+                                {%endif%} {% endfor %}
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable();
+    });
+</script>
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}
